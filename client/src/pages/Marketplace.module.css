@@ -1,0 +1,167 @@
+/* General Styles */
+.marketplacePage {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-image: url('/src/assets/images/naimg4.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  animation: gradientAnimation 15s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+.content {
+  background: rgba(255, 255, 255, 0.9);
+ 
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.content p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Real-Time Market Insights */
+.marketInsights {
+  margin-bottom: 2rem;
+}
+
+.marketInsights h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.marketInsights p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+/* Product List */
+.productList {
+  margin-bottom: 2rem;
+}
+
+.productList h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.productList input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.productList ul {
+  list-style: none;
+  padding: 0;
+}
+
+.productList li {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.productList .discount {
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* Add Product Section */
+.addProductSection {
+  margin-bottom: 2rem;
+}
+
+.addProductSection h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.addProductSection input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.addProductSection button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addProductSection button:hover {
+  background-color: #0056b3;
+}
+
+/* Farm-to-Market Access */
+.farmToMarket {
+  margin-bottom: 2rem;
+}
+
+.farmToMarket h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.farmToMarket p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.farmToMarket ul {
+  list-style: none;
+  padding: 0;
+}
+
+.farmToMarket li {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}

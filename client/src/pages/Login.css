@@ -1,0 +1,115 @@
+/* Background with watermark images */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/src/assets/images/naimg1.avif') no-repeat center center;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+    /* backdrop-filter: blur(5px); */
+  }
+  
+  /* Login Card with Glassmorphism effect */
+  .login-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #fff;
+    width: 350px;
+  }
+  
+  /* Stylish heading */
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .highlight {
+    color: #ffcc00; /* Golden yellow highlight */
+    font-weight: bold;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+  
+  /* Input Fields */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .input-group label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  
+  .input-group input {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  /* Button */
+  .login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffcc00;
+    border: none;
+    font-size: 1rem;
+    color: #000;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .login-button:hover {
+    background-color: #e6b800;
+  }
+  
+  /* Error Message */
+  .error-message {
+    color: #ff4d4d;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Signup Text */
+  .signup-text {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .signup-link {
+    color: #ffcc00;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s;
+  }
+  
+  .signup-link:hover {
+    opacity: 0.8;
+  }
+  
