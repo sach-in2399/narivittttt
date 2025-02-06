@@ -197,7 +197,7 @@ app.use(bodyParser.json());
 
 app.use("/api/users", userRoutes);
 
-const PORT = 5002;
+const PORT = 5003;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
