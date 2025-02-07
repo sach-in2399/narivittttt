@@ -75,9 +75,11 @@
 
 const express = require("express");
 const db = require("../db");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 
 const router = express.Router();
+const bcrypt = require('bcryptjs');
+
 
 router.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
