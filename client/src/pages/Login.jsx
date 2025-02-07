@@ -159,7 +159,7 @@ const Login = () => {
     setErrorMessage(""); // Clear previous errors
 
     try {
-      const response = await fetch("http://localhost:5002/api/users/login", {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
