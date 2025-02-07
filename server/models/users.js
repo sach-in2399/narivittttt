@@ -73,60 +73,81 @@
 
 
 
+require('dotenv').config(); // Ensure this is at the top of your db.js file
 const express = require("express");
 const db = require("../db");
-// const bcrypt = require("bcrypt");
-
-const router = express.Router();
 const bcrypt = require('bcryptjs');
 
+const router = express.Router();
 
+// Signup Route
 router.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    // Check if email already exists
-    db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
-      if (err) return res.status(500).json({ message: "Database error" });
-      if (result.length > 0) return res.status(400).json({ message: "Email already exists" });
+    // Check if email already exists in the database
+    const query = "SELECT * FROM users WHERE email = ?";
+    db.promise().query(query, [email])
+      .then(async ([rows]) => {
+        if (rows.length > 0) {
+          return res.status(400).json({ message: "Email already exists" });
+        }
 
-      // Hash password
-      const hashedPassword = await bcrypt.hash(password, 10);
+        // Hash the password before saving to DB
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-      // Insert user into database
-      db.query("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", [name, email, hashedPassword], (err) => {
-        if (err) return res.status(500).json({ message: "Database insertion error" });
-        res.status(201).json({ message: "User registered successfully" });
+        // Insert the user into the database
+        const insertQuery = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+        db.promise().query(insertQuery, [name, email, hashedPassword])
+          .then(() => {
+            res.status(201).json({ message: "User registered successfully" });
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).json({ message: "Database insertion error" });
+          });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).json({ message: "Database error" });
       });
-    });
   } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Login Route
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Check if the user exists in the database
+    const query = "SELECT * FROM users WHERE email = ?";
+    db.promise().query(query, [email])
+      .then(async ([rows]) => {
+        if (rows.length === 0) {
+          return res.status(401).json({ message: "User not found. Please sign up first." });
+        }
+
+        const user = rows[0];
+
+        // Compare the password with the hashed password in the database
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          return res.status(401).json({ message: "Wrong credentials. Please try again." });
+        }
+
+        res.status(200).json({ message: "Login successful" });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).json({ message: "Database error" });
+      });
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Server error" });
   }
 });
 
 module.exports = router;
-
-
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    // Check if user exists
-    db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
-      if (err) return res.status(500).json({ message: "Database error" });
-
-      if (result.length === 0) return res.status(401).json({ message: "User not found. Please sign up first." });
-
-      const user = result[0];
-
-      // Compare password
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) return res.status(401).json({ message: "Wrong credentials. Please try again." });
-
-      res.status(200).json({ message: "Login successful" });
-    });
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
-});
-
